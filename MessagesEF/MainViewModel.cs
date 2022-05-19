@@ -7,7 +7,11 @@ namespace Messages
 {
     internal class MainViewModel : INotifyPropertyChanged
     {
-        public List<Author> Authors
+        public Object SelectedPost { get; set; }
+        private Object selectedAuthor;
+        private List<Object> authors;
+        private List<Object> posts;
+        public List<Object> Authors
         {
             get => authors;
             set
@@ -16,7 +20,7 @@ namespace Messages
                 OnPropertyChanged();
             }
         }
-        public List<Post> Posts
+        public List<Object> Posts
         {
             get => posts;
             set
@@ -26,17 +30,14 @@ namespace Messages
             }
         }
 
-        public Author SelectedAuthor
+        public Object SelectedAuthor
         {
             get => selectedAuthor;
             set
             {
                 selectedAuthor = value;
-                LoadPosts(selectedAuthor);
             }
         }
-
-        public Post SelectedPost { get; set; }
 
         public string Title { get; set; }
         public string Content { get; set; }
@@ -44,52 +45,22 @@ namespace Messages
         public ActionCommand AddCommand { get; set; }
         public ActionCommand DeleteCommand { get; set; }
 
-        private Author selectedAuthor;
-        private List<Author> authors;
-        private List<Post> posts;
-
         public event PropertyChangedEventHandler PropertyChanged;
-
-        AuthorDataRepository authorDataRepository = new AuthorDataRepository();
-        PostDataRepository postDataRepository = new PostDataRepository();
 
         public MainViewModel()
         {
             AddCommand = new ActionCommand(AddCommandAction);
             DeleteCommand = new ActionCommand(DeleteCommandAction);
-            Authors = authorDataRepository.GetAllAuthors();
-        }
-        private void LoadPosts(Author selectedAuthor)
-        {
-            Posts = postDataRepository.GetPostsFor(selectedAuthor);
         }
 
         private void DeleteCommandAction()
         {
-            if (SelectedPost != null)
-            {
-                postDataRepository.DeletePost(SelectedPost);
-                LoadPosts(SelectedAuthor);
-            }
+            throw new NotImplementedException();
         }
 
         private void AddCommandAction()
         {
-            if (SelectedAuthor != null)
-            {
-
-                Post post = new Post();
-                post.Content = Content;
-                post.Date = DateTime.Now;
-                post.Title = Title;
-
-                SelectedAuthor.Posts.Add(post);
-
-                authorDataRepository.UpdateAuthor(SelectedAuthor);
-
-                LoadPosts(SelectedAuthor);
-
-            }
+            throw new NotImplementedException();
         }
 
         private void OnPropertyChanged([CallerMemberName] string property = null)
