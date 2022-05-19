@@ -27,7 +27,7 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="6*"/>
+            <RowDefinition Height="3*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -37,7 +37,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <ListBox Grid.Column="0" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}"/>
+            <ListBox Grid.Column="0" ItemsSource="{Binding Authors}" SelectedItem="{Binding SelectedAuthor}"/>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
@@ -63,7 +63,7 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-            <ListBox ItemsSource="{Binding Messages}" SelectedItem="{Binding SelectedMessage}"/>
+            <ListBox ItemsSource="{Binding Posts}" SelectedItem="{Binding SelectedPost}"/>
             <Button Grid.Column="1" Command="{Binding DeleteCommand}">Delete</Button>
         </Grid>
     </Grid>
